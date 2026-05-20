@@ -1,0 +1,44 @@
+name: Build and deploy
+
+on:
+  workflow_dispatch:  # POST to /repos/kuracms/kura-escape-example/actions/workflows/deploy.yml/dispatches
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      - name: Install Hugo
+        run: |
+          curl -sSL "https://github.com/gohugoio/hugo/releases/download/v0.152.2/hugo_extended_0.152.2_linux-amd64.tar.gz" \
+            | tar -xz -C /usr/local/bin hugo
+
+      - name: Pull content from kura
+        env:
+          KURA_TOKEN: ${{ secrets.KURA_TOKEN }}
+        run: ./fetch-content.sh
+
+      - name: Build site
+        run: hugo --minify --gc
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install wrangler
+        run: npm install --no-save wrangler@latest
+
+      - name: Deploy to Cloudflare Workers
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy
