@@ -1,0 +1,13 @@
+baseURL: "https://escape.kuracms.com/"
+languageCode: "en-us"
+title: "Kagi Escape Rooms"
+enableRobotsTXT: true
+
+params:
+  description: "A small Tokyo escape-room operator. Five rooms - a beginner one, a couple of mid-difficulty ones, and a fiendish
+    one for veterans."
+  email: "hello@kagi-escape.example"
+  address: "Shibuya 2-chome, Tokyo"
+
+minify:
+  minifyOutput: true

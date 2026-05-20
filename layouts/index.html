@@ -1,0 +1,109 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="shell">
+    <p class="eyebrow">Shibuya · Tokyo · est. 2019</p>
+    <h1>Sixty minutes <em>against the room.</em></h1>
+    <p class="lede">
+      Five rooms, hand-built in our small Shibuya basement.
+      Bring two friends or five &mdash; we open at six, run until midnight,
+      and don't take walk-ins after ten.
+    </p>
+    <div class="hero-cta">
+      <a class="btn" href="#rooms">See the rooms &darr;</a>
+      <a class="btn ghost" href="#book">Book a slot</a>
+    </div>
+  </div>
+</section>
+
+<section id="rooms" class="rooms">
+  <div class="shell">
+    <header class="section-head">
+      <p class="eyebrow">Currently open</p>
+      <h2>The rooms.</h2>
+      <p class="sub">
+        Beginner rooms are gentle &mdash; no jump scares, no dark corridors.
+        Fiendish ones are for veterans only. The duration is the timer; you can
+        bail out at any time.
+      </p>
+    </header>
+
+    <div class="room-grid">
+      {{ range $i, $room := .Site.Data.rooms }}
+      <article class="room {{ if eq $room.difficulty "fiendish" }}room-fiendish{{ end }}" id="{{ $room.slug }}">
+        <a class="room-photo" href="#book" aria-label="Book {{ $room.title }}">
+          {{ with $room.hero_image }}
+            <img src="{{ . }}" alt="{{ $room.title }}" loading="lazy">
+          {{ end }}
+        </a>
+        <div class="room-body">
+          <p class="room-tag tag-{{ $room.difficulty }}">{{ $room.difficulty }}</p>
+          <h3>{{ $room.title }}</h3>
+          {{ with $room.tagline }}<p class="room-tagline">{{ . }}</p>{{ end }}
+          <p class="room-desc">{{ $room.description }}</p>
+          <dl class="room-facts">
+            <div><dt>Time</dt><dd>{{ $room.duration_min }} min</dd></div>
+            <div><dt>Players</dt><dd>{{ $room.min_players }}-{{ $room.max_players }}</dd></div>
+            <div><dt>Per player</dt><dd>&yen;{{ printf "%d" (int $room.price_jpy) }}</dd></div>
+          </dl>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section id="visit" class="visit">
+  <div class="shell">
+    <header class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2>Show up, get briefed, get locked in.</h2>
+    </header>
+    <div class="visit-cols">
+      <div>
+        <h3>1. Pick a slot</h3>
+        <p>
+          Each room runs on a one-hour rotation from 18:00 to 22:30. Book online (below)
+          or drop in if the slot is free. Saturdays book out two weeks ahead.
+        </p>
+      </div>
+      <div>
+        <h3>2. Get briefed</h3>
+        <p>
+          Five-minute briefing in the lobby. The clock starts when we leave.
+          Hint button on the wall &mdash; use it twice and we'll just tell you.
+        </p>
+      </div>
+      <div>
+        <h3>3. Beat the room</h3>
+        <p>
+          Most teams finish with ten to fifteen minutes to spare. About one in twelve
+          doesn't make it &mdash; honourable defeat, beer on the house.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="book" class="book">
+  <div class="shell">
+    <p class="eyebrow">Reserve</p>
+    <h2>Tomorrow night, this weekend, or in three months.</h2>
+    <p class="sub">
+      Send us your party size, preferred room, and a date or two. We'll confirm by email
+      within the day. No phone &mdash; we're usually inside the rooms.
+    </p>
+    <a class="btn primary" href="mailto:{{ .Site.Params.email }}">Email to book</a>
+  </div>
+</section>
+
+<section class="kura-note">
+  <div class="shell">
+    <p>
+      <strong>About this site.</strong> The page you're reading is statically built &mdash;
+      Hugo turns the content from <a href="https://kuracms.com">kura</a> into plain HTML
+      every time the editor hits Publish. There's no database query running for you to read
+      this; it's just files on Cloudflare's edge.
+    </p>
+  </div>
+</section>
+{{ end }}

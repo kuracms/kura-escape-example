@@ -1,0 +1,434 @@
+/* ---------- tokens ---------- */
+:root {
+  --bg: #0f0b0a;
+  --bg-soft: #1a1412;
+  --panel: #1f1816;
+  --ink: #f1e8db;
+  --muted: #97877a;
+  --faint: #5e504a;
+  --line: #2a221f;
+  --accent: #c84a3a; /* crimson */
+  --accent-soft: rgba(200, 74, 58, 0.12);
+  --beginner: #5b9669;
+  --casual: #8aa959;
+  --tricky: #c8893f;
+  --fiendish: #c84a3a;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-feature-settings:
+    "ss01" on,
+    "cv11" on;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(ellipse at 50% -10%, rgba(200, 74, 58, 0.08), transparent 70%),
+    radial-gradient(ellipse at 100% 50%, rgba(255, 255, 255, 0.02), transparent 60%);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: var(--ink);
+}
+a:hover {
+  color: var(--accent);
+}
+
+.shell {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+@media (min-width: 768px) {
+  .shell {
+    padding: 0 2rem;
+  }
+}
+
+.eyebrow {
+  margin: 0 0 0.85rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.93rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line);
+  transition:
+    border-color 0.18s,
+    color 0.18s,
+    background 0.18s;
+}
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.btn.ghost {
+  background: transparent;
+}
+.btn.primary {
+  background: var(--accent);
+  color: #fbf2eb;
+  border-color: var(--accent);
+}
+.btn.primary:hover {
+  filter: brightness(1.08);
+  color: #fff;
+}
+
+/* ---------- header ---------- */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: rgba(15, 11, 10, 0.7);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+.site-header .shell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.1rem;
+  padding-bottom: 1.1rem;
+}
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  text-decoration: none;
+  color: inherit;
+}
+.brand-mark {
+  font-size: 1.5rem;
+  color: var(--accent);
+  line-height: 1;
+}
+.brand-name {
+  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.brand-sub {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+.site-nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.site-nav a:hover {
+  color: var(--ink);
+}
+
+/* ---------- hero ---------- */
+.hero {
+  padding: 5rem 0 4rem;
+  border-bottom: 1px solid var(--line);
+}
+.hero h1 {
+  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  margin: 0 0 1.5rem;
+  max-width: 26ch;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+.hero .lede {
+  max-width: 38ch;
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin: 0 0 2rem;
+}
+.hero-cta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* ---------- rooms ---------- */
+.rooms {
+  padding: 6rem 0;
+}
+.section-head {
+  max-width: 42rem;
+  margin-bottom: 3rem;
+}
+.section-head h2 {
+  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 0.85rem;
+}
+.section-head .sub {
+  color: var(--muted);
+  margin: 0;
+  font-size: 1.02rem;
+  max-width: 36rem;
+}
+
+.room-grid {
+  display: grid;
+  gap: 2.5rem 2rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .room-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.room {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+}
+.room:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.room-fiendish::before {
+  content: "Veterans only";
+  display: block;
+  position: absolute;
+  margin: 0.85rem 0 0 0.85rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  background: var(--accent);
+  color: #fbf2eb;
+  padding: 0.25rem 0.55rem;
+  border-radius: 4px;
+  z-index: 2;
+}
+.room {
+  position: relative;
+}
+.room-photo {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+.room-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.85) contrast(1.06) saturate(0.92);
+  transition:
+    filter 0.3s,
+    transform 0.6s;
+}
+.room:hover .room-photo img {
+  filter: brightness(0.98) contrast(1.06) saturate(1);
+  transform: scale(1.04);
+}
+.room-body {
+  padding: 1.4rem 1.5rem 1.65rem;
+  flex: 1;
+}
+.room-tag {
+  display: inline-block;
+  margin: 0 0 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.tag-beginner {
+  background: rgba(91, 150, 105, 0.15);
+  color: var(--beginner);
+}
+.tag-casual {
+  background: rgba(138, 169, 89, 0.15);
+  color: var(--casual);
+}
+.tag-tricky {
+  background: rgba(200, 137, 63, 0.15);
+  color: var(--tricky);
+}
+.tag-fiendish {
+  background: rgba(200, 74, 58, 0.15);
+  color: var(--fiendish);
+}
+.room-body h3 {
+  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-weight: 500;
+  font-size: 1.7rem;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.45rem;
+  line-height: 1.1;
+}
+.room-tagline {
+  color: var(--muted);
+  font-style: italic;
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+}
+.room-desc {
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.room-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+.room-facts > div {
+  margin: 0;
+}
+.room-facts dt {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--faint);
+  margin: 0 0 0.2rem;
+}
+.room-facts dd {
+  margin: 0;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+/* ---------- visit ---------- */
+.visit {
+  padding: 4rem 0 6rem;
+  border-top: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+.visit-cols {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .visit-cols {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.visit-cols h3 {
+  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin: 0 0 0.7rem;
+}
+.visit-cols p {
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---------- book ---------- */
+.book {
+  padding: 6rem 0;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.book h2 {
+  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 1.2rem;
+  max-width: 24ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.book .sub {
+  color: var(--muted);
+  max-width: 40ch;
+  margin: 0 auto 2rem;
+}
+
+/* ---------- kura note ---------- */
+.kura-note {
+  padding: 3rem 0 4rem;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+.kura-note p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  max-width: 42rem;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* ---------- footer ---------- */
+.site-footer {
+  padding: 2.5rem 0 3.5rem;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+.site-footer p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.site-footer .foot-cred strong {
+  color: var(--ink);
+}
+.site-footer .foot-meta {
+  margin-top: 0.5rem;
+}

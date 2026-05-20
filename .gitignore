@@ -1,0 +1,7 @@
+node_modules
+public
+.wrangler
+.hugo_build.lock
+resources
+data/rooms.json
+data/rooms-raw.json
