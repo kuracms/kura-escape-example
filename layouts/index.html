@@ -1,12 +1,12 @@
 {{ define "main" }}
 <section class="hero">
   <div class="shell">
-    <p class="eyebrow">Shibuya · Tokyo · est. 2019</p>
+    <p class="eyebrow">Clerkenwell &middot; London &middot; est. 2017</p>
     <h1>Sixty minutes <em>against the room.</em></h1>
     <p class="lede">
-      Five rooms, hand-built in our small Shibuya basement.
-      Bring two friends or five &mdash; we open at six, run until midnight,
-      and don't take walk-ins after ten.
+      Five rooms in a Clerkenwell basement, all set during the war years.
+      Bring two friends or five &mdash; we open at four in the afternoon, run
+      until midnight, and don't take walk-ins after ten.
     </p>
     <div class="hero-cta">
       <a class="btn" href="#rooms">See the rooms &darr;</a>
@@ -43,7 +43,7 @@
           <dl class="room-facts">
             <div><dt>Time</dt><dd>{{ $room.duration_min }} min</dd></div>
             <div><dt>Players</dt><dd>{{ $room.min_players }}-{{ $room.max_players }}</dd></div>
-            <div><dt>Per player</dt><dd>&yen;{{ printf "%d" (int $room.price_jpy) }}</dd></div>
+            <div><dt>Per player</dt><dd>&pound;{{ printf "%d" (int $room.price_gbp) }}</dd></div>
           </dl>
         </div>
       </article>
@@ -62,7 +62,7 @@
       <div>
         <h3>1. Pick a slot</h3>
         <p>
-          Each room runs on a one-hour rotation from 18:00 to 22:30. Book online (below)
+          Each room runs on a one-hour rotation from 16:00 to 22:30. Book online (below)
           or drop in if the slot is free. Saturdays book out two weeks ahead.
         </p>
       </div>
