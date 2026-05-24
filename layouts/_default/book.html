@@ -1,0 +1,139 @@
+{{ define "main" }}
+<section class="book-page">
+  <div class="book-shell">
+    <p class="eyebrow">Reserve</p>
+    <h1>Hold a slot.</h1>
+    <p class="book-intro">
+      Pick a room, a night, and a sitting. We&rsquo;ll ring you within the day to
+      confirm. Slots are held for 24 hours from submission.
+    </p>
+
+    <form id="booking-form" class="telegram" novalidate>
+      <div class="telegram-head">
+        <span class="telegram-stamp">URGENT &middot; CONFIDENTIAL</span>
+        <span class="telegram-meta">Form SR-7 &middot; Issued 1942</span>
+      </div>
+
+      <div class="field">
+        <label for="f-room">Room</label>
+        <select id="f-room" name="room" required>
+          {{ range .Site.Data.rooms }}
+            <option value="{{ .slug }}" data-min="{{ .min_players }}" data-max="{{ .max_players }}">
+              {{ .title }} &mdash; {{ .difficulty }}, {{ .duration_min }} min
+            </option>
+          {{ end }}
+        </select>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="f-date">Date</label>
+          <input id="f-date" name="date" type="date" required>
+        </div>
+        <div class="field">
+          <label for="f-slot">Sitting</label>
+          <select id="f-slot" name="slot" required>
+            <option value="early">Early &mdash; 18:00</option>
+            <option value="late">Late &mdash; 20:30</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-players">Players</label>
+          <select id="f-players" name="players" required>
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="f-name">Name</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="f-phone">Telephone</label>
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" required>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+        </div>
+      </div>
+
+      <div class="telegram-foot">
+        <button type="submit" class="btn primary">Hold this slot</button>
+        <span class="telegram-note">No payment taken now. We&rsquo;ll confirm by telephone.</span>
+      </div>
+    </form>
+
+    <div id="booking-success" class="booking-success" hidden>
+      <p class="eyebrow">Slot held</p>
+      <h2>Stand by for the call.</h2>
+      <p>Slot held for <strong id="s-name"></strong>. We&rsquo;ll call <strong id="s-phone"></strong> within the day to confirm.</p>
+      <p class="reference">Reference: <span id="s-ref"></span></p>
+      <p class="success-meta"><a href="/">Back to the rooms</a></p>
+    </div>
+
+    <p class="book-disclaimer">
+      <em>This is a demo &mdash; your submission isn&rsquo;t actually saved. Built on
+      <a href="https://kuracms.com">kura</a>.</em>
+    </p>
+  </div>
+</section>
+
+<script>
+(function () {
+  var form = document.getElementById('booking-form');
+  var success = document.getElementById('booking-success');
+  if (!form || !success) return;
+
+  // Date input: default to tomorrow, restrict window to next 30 days.
+  var dateInput = document.getElementById('f-date');
+  var today = new Date();
+  var tomorrow = new Date(today.getTime() + 86400000);
+  var maxDay = new Date(today.getTime() + 30 * 86400000);
+  function iso(d) {
+    return d.getFullYear() + '-' +
+      String(d.getMonth() + 1).padStart(2, '0') + '-' +
+      String(d.getDate()).padStart(2, '0');
+  }
+  dateInput.min = iso(tomorrow);
+  dateInput.max = iso(maxDay);
+  dateInput.value = iso(tomorrow);
+
+  // Preselect room from ?room=slug.
+  var params = new URLSearchParams(window.location.search);
+  var roomParam = params.get('room');
+  if (roomParam) {
+    var roomSelect = document.getElementById('f-room');
+    for (var i = 0; i < roomSelect.options.length; i++) {
+      if (roomSelect.options[i].value === roomParam) {
+        roomSelect.selectedIndex = i;
+        break;
+      }
+    }
+  }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    var name = document.getElementById('f-name').value.trim();
+    var phone = document.getElementById('f-phone').value.trim();
+    var ref = 'SR-' + Math.floor(1000 + Math.random() * 9000);
+    document.getElementById('s-name').textContent = name || 'you';
+    document.getElementById('s-phone').textContent = phone || 'the number provided';
+    document.getElementById('s-ref').textContent = ref;
+    form.hidden = true;
+    success.hidden = false;
+    success.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script>
+{{ end }}

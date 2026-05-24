@@ -17,7 +17,7 @@
     {{ end }}
     <div class="hero-cta">
       <a class="btn" href="#rooms">See the rooms &darr;</a>
-      <a class="btn ghost" href="#book">Book a slot</a>
+      <a class="btn ghost" href="/book/">Book a slot</a>
     </div>
   </div>
 </section>
@@ -37,7 +37,7 @@
     <div class="room-grid">
       {{ range $i, $room := .Site.Data.rooms }}
       <article class="room {{ if eq $room.difficulty "fiendish" }}room-fiendish{{ end }}" id="{{ $room.slug }}">
-        <a class="room-photo" href="#book" aria-label="Book {{ $room.title }}">
+        <a class="room-photo" href="/book/?room={{ $room.slug }}" aria-label="Book {{ $room.title }}">
           {{ with $room.hero_image }}
             <img src="{{ . }}" alt="{{ $room.title }}" loading="lazy">
           {{ end }}
@@ -52,6 +52,7 @@
             <div><dt>Players</dt><dd>{{ $room.min_players }}-{{ $room.max_players }}</dd></div>
             <div><dt>Per player</dt><dd>&pound;{{ printf "%d" (int $room.price_gbp) }}</dd></div>
           </dl>
+          <a class="room-book btn" href="/book/?room={{ $room.slug }}">Book a slot &rarr;</a>
         </div>
       </article>
       {{ end }}
@@ -99,7 +100,7 @@
       Send us your party size, preferred room, and a date or two. We'll confirm by email
       within the day. No phone &mdash; we're usually inside the rooms.
     </p>
-    <a class="btn primary" href="mailto:{{ .Site.Params.email }}">Email to book</a>
+    <a class="btn primary" href="/book/">Open the booking form</a>
   </div>
 </section>
 
