@@ -1,7 +1,7 @@
 baseURL: "https://escape.kuracms.com/"
 languageCode: "en-gb"
 title: "The Sealed Room Co."
-enableRobotsTXT: true
+enableRobotsTXT: false
 
 params:
   description: "A small Clerkenwell escape-room operator with five WWII-themed rooms - Bletchley codebreakers, French Resistance,
