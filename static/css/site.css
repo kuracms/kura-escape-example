@@ -1,18 +1,21 @@
-/* ---------- tokens ---------- */
+/* ---------- tokens ----------
+   Palette is a lifted "lamp-lit dossier room": warm tobacco rather than
+   near-black, so the page reads as period and dim but not muddy or
+   claustrophobic on first arrival. */
 :root {
-  --bg: #0f0b0a;
-  --bg-soft: #1a1412;
-  --panel: #1f1816;
-  --ink: #f1e8db;
-  --muted: #97877a;
-  --faint: #5e504a;
-  --line: #2a221f;
-  --accent: #c84a3a; /* crimson */
-  --accent-soft: rgba(200, 74, 58, 0.12);
-  --beginner: #5b9669;
-  --casual: #8aa959;
-  --tricky: #c8893f;
-  --fiendish: #c84a3a;
+  --bg: #2a221d;
+  --bg-soft: #342a23;
+  --panel: #3a2e26;
+  --ink: #f6ecdd;
+  --muted: #c4b29a;
+  --faint: #8d7a65;
+  --line: #4a3c32;
+  --accent: #e36450; /* crimson, lifted for contrast on the warmer ground */
+  --accent-soft: rgba(227, 100, 80, 0.16);
+  --beginner: #8fc89c;
+  --casual: #bfd28b;
+  --tricky: #e2a76a;
+  --fiendish: #e36450;
 }
 
 *,
@@ -36,8 +39,11 @@ body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   background-image:
-    radial-gradient(ellipse at 50% -10%, rgba(200, 74, 58, 0.08), transparent 70%),
-    radial-gradient(ellipse at 100% 50%, rgba(255, 255, 255, 0.02), transparent 60%);
+    radial-gradient(ellipse at 50% -10%, rgba(227, 100, 80, 0.12), transparent 70%),
+    radial-gradient(ellipse at 100% 50%, rgba(255, 240, 220, 0.05), transparent 60%),
+    /* subtle paper-fibre noise so it reads as dossier paper, not flat brown */
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18  0 0 0 0 0.14  0 0 0 0 0.10  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/></svg>");
+  background-attachment: fixed;
 }
 
 img {
@@ -109,7 +115,7 @@ a:hover {
 /* ---------- header ---------- */
 .site-header {
   border-bottom: 1px solid var(--line);
-  background: rgba(15, 11, 10, 0.7);
+  background: rgba(42, 34, 29, 0.82);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
@@ -184,6 +190,13 @@ a:hover {
   font-size: 1.05rem;
   color: var(--muted);
   margin: 0 0 2rem;
+}
+.hero .lede p {
+  margin: 0 0 1rem;
+  color: var(--muted);
+}
+.hero .lede p:last-child {
+  margin-bottom: 0;
 }
 .hero-cta {
   display: flex;
@@ -266,7 +279,7 @@ a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.85) contrast(1.06) saturate(0.92);
+  filter: brightness(0.95) contrast(1.04) saturate(0.95);
   transition:
     filter 0.3s,
     transform 0.6s;

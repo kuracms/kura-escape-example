@@ -1,13 +1,20 @@
 {{ define "main" }}
+{{ $home := index .Site.Data.pages "home" }}
 <section class="hero">
   <div class="shell">
-    <p class="eyebrow">Clerkenwell &middot; London &middot; est. 2017</p>
-    <h1>Sixty minutes <em>against the room.</em></h1>
-    <p class="lede">
-      Five rooms in a Clerkenwell basement, all set during the war years.
-      Bring two friends or five &mdash; we open at four in the afternoon, run
-      until midnight, and don't take walk-ins after ten.
-    </p>
+    {{ if $home }}
+      {{ with $home.subtitle }}<p class="eyebrow">{{ . }}</p>{{ end }}
+      <h1>{{ $home.title }}</h1>
+      <div class="lede">{{ $home.body | markdownify }}</div>
+    {{ else }}
+      <p class="eyebrow">Clerkenwell &middot; London &middot; est. 2017</p>
+      <h1>Sixty minutes <em>against the room.</em></h1>
+      <p class="lede">
+        Five rooms in a Clerkenwell basement, all set during the war years.
+        Bring two friends or five &mdash; we open at four in the afternoon, run
+        until midnight, and don't take walk-ins after ten.
+      </p>
+    {{ end }}
     <div class="hero-cta">
       <a class="btn" href="#rooms">See the rooms &darr;</a>
       <a class="btn ghost" href="#book">Book a slot</a>
