@@ -5,3 +5,5 @@ public
 resources
 data/rooms.json
 data/rooms-raw.json
+data/pages.json
+data/pages-raw.json
