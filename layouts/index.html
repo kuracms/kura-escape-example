@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $home := index .Site.Data.pages "home" }}
+{{ $home := index .Site.Data.globals "home" }}
 <section class="hero">
   <div class="shell">
     {{ if $home }}

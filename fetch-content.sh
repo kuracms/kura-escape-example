@@ -33,18 +33,18 @@ rm -f data/rooms-raw.json
 
 curl -fsSL \
 	-H "Authorization: Bearer ${KURA_TOKEN}" \
-	"${KURA_BASE}/api/v1/${KURA_PROJECT}/page?limit=10" \
-	>data/pages-raw.json
+	"${KURA_BASE}/api/v1/${KURA_PROJECT}/global?limit=10" \
+	>data/globals-raw.json
 
 python3 -c "
 import json
-with open('data/pages-raw.json') as f:
+with open('data/globals-raw.json') as f:
     body = json.load(f)
 pages = [p for p in body['data'] if p.get('published')]
 out = {p['slug']: p for p in pages}
-with open('data/pages.json', 'w') as f:
+with open('data/globals.json', 'w') as f:
     json.dump(out, f, indent=2)
 print(f'Wrote {len(out)} pages')
 "
 
-rm -f data/pages-raw.json
+rm -f data/globals-raw.json

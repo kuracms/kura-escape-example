@@ -1,0 +1,29 @@
+{
+  "home": {
+    "id": "2b3d16d3-3bc9-4001-997c-17136fa95ab5",
+    "slug": "home",
+    "title": "The Sealed Room Co.",
+    "subtitle": "Five rooms. One war.",
+    "body": "Five escape rooms in a converted print works in Clerkenwell, each one set somewhere in the Second World War or its long shadow. We open Wednesday through Sunday, two slots an evening. Bring three to six players and an appetite for ciphers.\n\nBuilt by ex-set designers and a retired cryptanalyst. We don't do scares; we do puzzles - the kind that reward patience and a notebook.",
+    "published": true,
+    "published_at": "2026-05-25T11:45:19.457Z"
+  },
+  "privacy": {
+    "id": "422ea5d3-d111-4cad-9427-9b3e98a9a70c",
+    "slug": "privacy",
+    "title": "Privacy notice",
+    "subtitle": "How we handle your booking details",
+    "body": "Booking a room means giving us a name, an email, and a phone number. We use those to confirm your slot and to call you if there's a delay on the day.\n\nThe team don't have access to anything else about you. We don't run ad trackers on this site - the only cookie we set is a session marker if you start a booking.\n\nIf you want your record deleted, email **hello@thesealedroom.example** and we'll wipe it within a week. We keep payment records as long as HMRC requires us to.",
+    "published": true,
+    "published_at": "2026-05-25T11:45:19.457Z"
+  },
+  "terms": {
+    "id": "0e6d02de-9db6-49fc-9bb2-703dc25048ac",
+    "slug": "terms",
+    "title": "Booking terms",
+    "subtitle": "The rules of engagement",
+    "body": "**Arrival.** Please arrive fifteen minutes before your slot. Late arrivals shorten the game; more than fifteen minutes late and we may need to give the room to the next booking.\n\n**Cancellations.** Free up to 48 hours before. Inside 48 hours we charge half. Reschedules are always free if there's another slot we can move you to.\n\n**Age.** Players must be 12 or over. Under-16s need an adult in the room.\n\n**Safety.** Rooms have an emergency unlock from the inside. Tell the host before you start about any claustrophobia, mobility needs, or photosensitivity - all our rooms can be played with the strobes off.",
+    "published": true,
+    "published_at": "2026-05-25T11:45:19.457Z"
+  }
+}

@@ -1,5 +1,5 @@
 {{ $slug := .slug }}
-{{ $page := index .Site.Data.pages $slug }}
+{{ $page := index .Site.Data.globals $slug }}
 <article class="legal">
   <div class="legal-shell">
     {{ if $page }}
